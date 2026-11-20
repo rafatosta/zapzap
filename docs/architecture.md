@@ -502,6 +502,20 @@ Cada `WebView` guarda `last_download_directory` apenas em memória, isolado por
 conta. `DownloadManager._choose_download_target` compartilha o seletor entre
 "Salvar como" e "perguntar sempre"; somente uma escolha válida atualiza a
 sugestão. "Salvar" e o modo automático sempre usam `system/download_path`.
+Um download nunca sobrescreve um arquivo existente com o mesmo nome:
+`DownloadManager._keep_existing_files` usa
+`DownloadNamingService.available_file_name` para trocar o nome por
+`nome (n).ext` quando o caminho já existe no disco ou é o destino de outro
+download registrado. Ele roda depois que `_set_initial_download_parameters`
+define o diretório (nos ramos `else`, para que um erro não chegue ao recuo que
+chama `restore_path`), de modo que `DownloadDialog` já mostra o nome numerado,
+e de novo em `_begin_download`, antes de `accept()`, porque o nome pode ter sido
+ocupado enquanto o download esperava no diálogo ou na fila. Um destino escolhido
+no seletor ("Salvar como" ou "perguntar sempre") recebe
+`target_chosen_by_user` no meta e não é renomeado; downloads retomados também
+não. Erros de `RuntimeError`, `ValueError` ou `OSError`, ou os sufixos até 9999
+esgotados, mantêm o nome atual e só geram um aviso no log. O resultado sempre
+passa intacto por `sanitize_file_name`, inclusive no limite de bytes.
 A preferência `downloads/remember_last_save_as_directory` (padrão `True`)
 controla a sugestão, sem persistir o diretório. Desativá-la emite um sinal do
 domínio para limpar imediatamente as WebViews vivas. O filtro existente observa

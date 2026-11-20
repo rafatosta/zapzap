@@ -10,7 +10,7 @@ from types import SimpleNamespace
 
 from qt_test_case import QtTestCase
 
-from PyQt6.QtCore import QSettings
+from PyQt6.QtCore import QObject, QSettings, pyqtSignal
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWebEngineCore import QWebEngineDownloadRequest
 
@@ -441,6 +441,80 @@ class DownloadNamingSecurityTests(unittest.TestCase):
                         directory,
                         "report.pdf",
                     )
+
+
+
+class AvailableFileNameTests(unittest.TestCase):
+
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.dir, _ = DownloadNamingService.safe_download_target(
+            temporary.name, "x"
+        )
+
+    def touch(self, name, content=b""):
+        with open(os.path.join(self.dir, name), "wb") as handle:
+            handle.write(content)
+
+    def available(self, name, taken=()):
+        return DownloadNamingService.available_file_name(self.dir, name, taken)
+
+    def test_free_name_is_kept(self):
+        self.assertEqual(self.available("a.jpeg"), "a.jpeg")
+
+    def test_existing_file_gets_first_number(self):
+        self.touch("a.jpeg", b"old")
+        self.assertEqual(self.available("a.jpeg"), "a (1).jpeg")
+        with open(os.path.join(self.dir, "a.jpeg"), "rb") as handle:
+            self.assertEqual(handle.read(), b"old")
+
+    def test_skips_taken_numbers(self):
+        self.touch("a.jpeg")
+        self.touch("a (1).jpeg")
+        self.assertEqual(self.available("a.jpeg"), "a (2).jpeg")
+
+    def test_existing_directory_counts(self):
+        os.mkdir(os.path.join(self.dir, "a.jpeg"))
+        self.assertEqual(self.available("a.jpeg"), "a (1).jpeg")
+
+    def test_taken_paths_count(self):
+        taken = {os.path.normcase(os.path.join(self.dir, "a.jpeg"))}
+        self.assertEqual(self.available("a.jpeg", taken), "a (1).jpeg")
+
+    def test_name_without_extension(self):
+        self.touch("notes")
+        self.assertEqual(self.available("notes"), "notes (1)")
+
+    def test_long_multibyte_name_keeps_suffix(self):
+        name = DownloadNamingService.sanitize_file_name("\u015f" * 200 + ".jpeg")
+        self.touch(name)
+        result = self.available(name)
+        self.assertTrue(result.endswith(" (1).jpeg"))
+        self.assertLessEqual(
+            len(result.encode("utf-8")),
+            DownloadNamingService._MAX_FILE_NAME_BYTES,
+        )
+        self.assertEqual(DownloadNamingService.sanitize_file_name(result), result)
+
+    def test_oversized_extension_still_gets_unique_suffix(self):
+        name = DownloadNamingService.sanitize_file_name("a." + "x" * 236)
+        # Mark the name as taken instead of creating a file: the full path
+        # would pass the Windows MAX_PATH limit.
+        taken = {os.path.normcase(os.path.join(self.dir, name))}
+        result = self.available(name, taken)
+        self.assertTrue(result.startswith("a (1)."))
+        self.assertNotEqual(result, name)
+        self.assertLessEqual(
+            len(result.encode("utf-8")),
+            DownloadNamingService._MAX_FILE_NAME_BYTES,
+        )
+        self.assertEqual(DownloadNamingService.sanitize_file_name(result), result)
+
+    def test_exhausted_numbers_raise(self):
+        with patch("os.path.lexists", return_value=True):
+            with self.assertRaises(ValueError):
+                self.available("a.jpeg")
 
 
 class FakeDownload:
@@ -935,6 +1009,281 @@ class DownloadAutoOpenTypeTests(unittest.TestCase):
             )
         finally:
             os.unlink(path)
+
+
+
+class KeepFakeDownload(QObject):
+    """QObject download stand-in for the keep-existing-files flow."""
+
+    stateChanged = pyqtSignal(object)
+    receivedBytesChanged = pyqtSignal()
+    totalBytesChanged = pyqtSignal()
+    isPausedChanged = pyqtSignal()
+
+    def __init__(
+        self,
+        name="a.jpeg",
+        directory="",
+        state=QWebEngineDownloadRequest.DownloadState.DownloadRequested,
+    ):
+        super().__init__()
+        self._name = name
+        self._directory = directory
+        self._state = state
+        self.file_name_calls = []
+        self.accept_count = 0
+        self.resume_count = 0
+        self.cancel_count = 0
+
+    def state(self):
+        return self._state
+
+    def accept(self):
+        self.accept_count += 1
+        self._state = QWebEngineDownloadRequest.DownloadState.DownloadInProgress
+
+    def resume(self):
+        self.resume_count += 1
+        self._state = QWebEngineDownloadRequest.DownloadState.DownloadInProgress
+
+    def cancel(self):
+        self.cancel_count += 1
+        self._state = QWebEngineDownloadRequest.DownloadState.DownloadCancelled
+
+    def isPaused(self):
+        return False
+
+    def isFinished(self):
+        return False
+
+    def receivedBytes(self):
+        return 0
+
+    def totalBytes(self):
+        return 0
+
+    def mimeType(self):
+        return "image/jpeg"
+
+    def suggestedFileName(self):
+        return self._name
+
+    def url(self):
+        return SimpleNamespace(toString=lambda: "blob:https://web.whatsapp.com/x")
+
+    def downloadDirectory(self):
+        return self._directory
+
+    def setDownloadDirectory(self, directory):
+        self._directory = directory
+
+    def downloadFileName(self):
+        return self._name
+
+    def setDownloadFileName(self, name):
+        self.file_name_calls.append(name)
+        self._name = name
+
+
+class KeepExistingFilesTests(TemporarySettingsTest):
+
+    def setUp(self):
+        super().setUp()
+        self._previous_state = (
+            DownloadManager._active_downloads,
+            DownloadManager._queued_downloads,
+            DownloadManager._download_meta,
+            DownloadManager._terminal_records,
+            DownloadManager._has_seen_download_request,
+        )
+        DownloadManager._active_downloads = []
+        DownloadManager._queued_downloads = []
+        DownloadManager._download_meta = {}
+        DownloadManager._terminal_records = []
+        DownloadManager._has_seen_download_request = False
+        base = tempfile.TemporaryDirectory()
+        self.addCleanup(base.cleanup)
+        self.base, _ = DownloadNamingService.safe_download_target(base.name, "x")
+        DownloadManager.set_path(self.base)
+        DownloadSettings().behavior = DownloadBehavior.AUTOMATIC
+
+    def tearDown(self):
+        (
+            DownloadManager._active_downloads,
+            DownloadManager._queued_downloads,
+            DownloadManager._download_meta,
+            DownloadManager._terminal_records,
+            DownloadManager._has_seen_download_request,
+        ) = self._previous_state
+        super().tearDown()
+
+    def touch(self, name, directory=None):
+        with open(os.path.join(directory or self.base, name), "wb") as handle:
+            handle.write(b"old")
+
+    def prepared(self, name="a.jpeg"):
+        download = KeepFakeDownload(name)
+        self.assertTrue(DownloadManager._set_initial_download_parameters(download))
+        return download
+
+    def queue(self, download):
+        DownloadManager._queued_downloads.append(download)
+        DownloadManager._download_meta[id(download)]["status"] = "queued"
+
+    def test_initial_target_numbers_existing_file(self):
+        self.touch("a.jpeg")
+        download = self.prepared()
+        self.assertEqual(download.downloadFileName(), "a (1).jpeg")
+        self.assertEqual(download.downloadDirectory(), self.base)
+
+    def test_second_registered_download_gets_new_name(self):
+        first = self.prepared()
+        DownloadManager._register_download(first)
+        second = self.prepared()
+        self.assertEqual(first.downloadFileName(), "a.jpeg")
+        self.assertEqual(second.downloadFileName(), "a (1).jpeg")
+
+    def test_begin_renumbers_when_name_was_taken_meanwhile(self):
+        download = self.prepared()
+        DownloadManager._register_download(download)
+        self.touch("a.jpeg")
+        self.assertEqual(DownloadManager._begin_download(download), "started")
+        self.assertEqual(download.downloadFileName(), "a (1).jpeg")
+        self.assertEqual(download.accept_count, 1)
+
+    def test_queued_download_renumbers_when_name_taken_meanwhile(self):
+        download = self.prepared()
+        DownloadManager._register_download(download)
+        self.queue(download)
+        self.touch("a.jpeg")
+        DownloadManager._drain_queue()
+        self.assertEqual(download.downloadFileName(), "a (1).jpeg")
+        self.assertEqual(download.accept_count, 1)
+
+    def test_user_chosen_target_is_not_renamed(self):
+        self.touch("a.jpeg")
+        download = KeepFakeDownload("a.jpeg", self.base)
+        DownloadManager._register_download(download)
+        with patch(
+            "zapzap.features.downloads.download_manager.QFileDialog."
+            "getSaveFileName",
+            return_value=(os.path.join(self.base, "a.jpeg"), ""),
+        ):
+            self.assertTrue(DownloadManager._choose_download_target(download))
+        self.assertTrue(DownloadManager._meta(download)["target_chosen_by_user"])
+        self.queue(download)
+        DownloadManager._drain_queue()
+        self.assertEqual(download.downloadFileName(), "a.jpeg")
+        self.assertEqual(download.accept_count, 1)
+
+    def test_choose_target_without_meta_does_not_fail(self):
+        download = KeepFakeDownload("a.jpeg", self.base)
+        with patch(
+            "zapzap.features.downloads.download_manager.QFileDialog."
+            "getSaveFileName",
+            return_value=(os.path.join(self.base, "b.jpeg"), ""),
+        ):
+            self.assertTrue(DownloadManager._choose_download_target(download))
+        self.assertEqual(download.downloadFileName(), "b.jpeg")
+
+    def test_resumed_download_is_not_renamed(self):
+        self.touch("a.jpeg")
+        download = KeepFakeDownload(
+            "a.jpeg",
+            self.base,
+            QWebEngineDownloadRequest.DownloadState.DownloadInterrupted,
+        )
+        DownloadManager._register_download(download)
+        self.assertEqual(DownloadManager._begin_download(download), "started")
+        self.assertEqual(download.file_name_calls, [])
+        self.assertEqual(download.resume_count, 1)
+
+    def test_unexpected_numbering_error_never_resets_folder(self):
+        # Numbering sits outside the try that falls back to restore_path().
+        with patch.object(
+            DownloadManager,
+            "_keep_existing_files",
+            side_effect=AttributeError("unexpected"),
+        ), patch.object(DownloadManager, "restore_path") as restore:
+            with self.assertRaises(AttributeError):
+                DownloadManager._set_initial_download_parameters(
+                    KeepFakeDownload("a.jpeg")
+                )
+        restore.assert_not_called()
+        self.assertEqual(DownloadManager.get_path(), self.base)
+
+    def test_numbering_error_keeps_name_and_folder(self):
+        self.touch("a.jpeg")
+        with patch.object(
+            DownloadNamingService,
+            "available_file_name",
+            side_effect=ValueError("full"),
+        ), patch.object(
+            DownloadManager, "restore_path"
+        ) as restore, self.assertLogs(
+            "zapzap.features.downloads.download_manager", level="WARNING"
+        ):
+            download = self.prepared()
+            DownloadManager._register_download(download)
+            self.assertEqual(DownloadManager._begin_download(download), "started")
+        restore.assert_not_called()
+        self.assertEqual(download.downloadFileName(), "a.jpeg")
+        self.assertEqual(DownloadManager.get_path(), self.base)
+        self.assertEqual(download.accept_count, 1)
+
+    def test_fallback_directory_is_numbered(self):
+        fallback = tempfile.TemporaryDirectory()
+        self.addCleanup(fallback.cleanup)
+        fallback_dir, _ = DownloadNamingService.safe_download_target(
+            fallback.name, "x"
+        )
+        self.touch("a.jpeg", fallback_dir)
+        download = KeepFakeDownload("a.jpeg")
+        original = DownloadManager.set_download_target
+        calls = []
+
+        def failing_first(item, directory, *args, **kwargs):
+            calls.append(directory)
+            if len(calls) == 1:
+                raise RuntimeError("configured folder is unusable")
+            return original(item, directory, *args, **kwargs)
+
+        with patch.object(
+            DownloadManager, "DOWNLOAD_PATH", fallback_dir
+        ), patch.object(
+            DownloadManager, "set_download_target", side_effect=failing_first
+        ), patch.object(DownloadManager, "restore_path"), self.assertLogs(
+            "zapzap.features.downloads.download_manager", level="ERROR"
+        ):
+            self.assertTrue(
+                DownloadManager._set_initial_download_parameters(download)
+            )
+        self.assertEqual(download.downloadDirectory(), fallback_dir)
+        self.assertEqual(download.downloadFileName(), "a (1).jpeg")
+
+    def test_completed_numbered_download_is_recorded_with_new_path(self):
+        self.touch("a.jpeg")
+        download = self.prepared()
+        DownloadManager._record_completed_download(download)
+        recent = SettingsManager.get(DownloadManager._RECENT_DOWNLOADS_KEY, [])
+        self.assertTrue(recent[0].endswith("a (1).jpeg"))
+
+    def test_dialog_shows_numbered_name(self):
+        self.touch("a.jpeg")
+        DownloadSettings().behavior = DownloadBehavior.DIALOG
+        download = KeepFakeDownload("a.jpeg")
+        shown = []
+
+        def build_dialog(item, parent=None):
+            shown.append(item.downloadFileName())
+            return Mock()
+
+        with patch(
+            "zapzap.features.downloads.ui.download_dialog.DownloadDialog",
+            side_effect=build_dialog,
+        ):
+            DownloadManager.on_downloadRequested(download, None)
+        self.assertEqual(shown, ["a (1).jpeg"])
 
 
 if __name__ == "__main__":
