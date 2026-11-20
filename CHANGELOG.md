@@ -15,6 +15,9 @@ releases and the AppStream metadata.
 
 ### Added
 
+- Add Indonesian (`id`) interface translation catalog (`po/id.po`,
+  `po/LINGUAS`, compiled `zapzap/po/id/LC_MESSAGES/zapzap.mo`) and
+  regression test coverage (`tests/test_indonesian_translation.py`).
 - Respect the system Do Not Disturb status for WhatsApp Web's message tone
   (#896, #624). A new QtDBus monitor follows the notification server's
   `Inhibited` property (KDE Plasma) and the portal show-banners setting
