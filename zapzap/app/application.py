@@ -75,6 +75,9 @@ def main():
     QCoreApplication.setOrganizationDomain(zapzap.__domain__)
 
     SetupManager.apply()
+    # The single-instance socket and the files Qt WebEngine writes for a
+    # drag out of the page both live in the temporary directory.
+    SetupManager.apply_flatpak_temp_dir(zapzap.__appid__)
     TranslationManager.apply()
 
     # Qt requires QWebEngineView to be imported (or the corresponding

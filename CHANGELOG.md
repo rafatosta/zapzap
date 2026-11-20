@@ -62,6 +62,17 @@ releases and the AppStream metadata.
   focus is removed, so ZapZap no longer writes to the clipboard when it gains
   focus (#498, #523, #969). Its tests are replaced with tests for the new
   selection rules and for the paste script in a real WebEngine page.
+- Make images dragged out of ZapZap reach other applications in the Flatpak
+  (#522). The sandbox has a private `/tmp`, where Qt WebEngine saved the
+  dragged file, so the drop target received a path that does not exist outside
+  the sandbox: an empty attachment, or a "file not found" error in a file
+  manager. ZapZap now uses `$XDG_RUNTIME_DIR/app/$FLATPAK_ID`, which Flatpak
+  already shares with the host under the same path, as its temporary
+  directory, so no new filesystem permission is needed. An explicit `TMPDIR`
+  is respected. The single-instance socket also lives in the temporary
+  directory, so while an instance started before this change is still running
+  the private `/tmp` keeps being used and the new launch still finds it. Add
+  tests for the selection rules and the bootstrap order.
 
 ## [7.5.1] - 2026-10-15
 

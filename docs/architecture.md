@@ -114,6 +114,18 @@ O caminho principal está em `zapzap/app/application.py`:
 9. no encerramento, remove notificações, para D-Bus e tema e libera páginas
    WebEngine explicitamente.
 
+No Flatpak, logo depois de `SetupManager.apply()` e antes de criar
+`SingleApplication`, `SetupManager.apply_flatpak_temp_dir()` define `TMPDIR`
+como `$XDG_RUNTIME_DIR/app/$FLATPAK_ID`. O `/tmp` do sandbox é privado, e o Qt
+WebEngine grava em um `QTemporaryDir` a imagem arrastada para fora da página;
+com o `/tmp` privado, o destino do arraste recebia um caminho que não existe no
+host. Essa pasta já é compartilhada pelo Flatpak com o host no mesmo caminho,
+sem permissão adicional de filesystem. Um `TMPDIR` explícito é respeitado. O
+`QLocalServer` de instância única também fica no diretório temporário: enquanto
+existir no `/tmp` privado o socket de uma instância iniciada antes dessa
+mudança, o `/tmp` continua em uso, para que o novo lançamento encontre essa
+instância em vez de abrir uma segunda sobre o mesmo perfil.
+
 Em sistemas POSIX, `app.unix_signal_bridge` converte `SIGTERM` em uma
 solicitação normal de saída. O handler Python não chama Qt: o wakeup fd escreve
 em um `socketpair` não bloqueante, um `QSocketNotifier` recebe o evento dentro

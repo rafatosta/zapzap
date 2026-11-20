@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from collections.abc import MutableMapping
+import os
+from collections.abc import Callable, Mapping, MutableMapping
 from os import environ
 
 from PyQt6.QtCore import QFileInfo
@@ -58,6 +59,45 @@ def update_chromium_flag(
         flags = [value for value in flags if value != flag]
 
     environment["QTWEBENGINE_CHROMIUM_FLAGS"] = " ".join(flags)
+
+
+LEGACY_TEMP_DIR = "/tmp"
+
+
+def _is_writable_dir(path: str) -> bool:
+    return os.path.isdir(path) and os.access(path, os.W_OK | os.X_OK)
+
+
+def flatpak_shared_temp_dir(
+    server_name: str,
+    environment: Mapping[str, str] = environ,
+    *,
+    path_exists: Callable[[str], bool] = os.path.exists,
+    is_writable_dir: Callable[[str], bool] = _is_writable_dir,
+) -> str | None:
+    """Return the Flatpak directory to use as TMPDIR, or None to keep it.
+
+    The sandbox has a private /tmp. Qt WebEngine saves an image dragged out of
+    the page in a QTemporaryDir and offers that local path to the drop target,
+    which then gets a file that does not exist outside the sandbox (#522).
+    Flatpak shares $XDG_RUNTIME_DIR/app/$FLATPAK_ID with the host under the
+    same path, so using it as the temporary directory makes the dragged file
+    reachable without any extra filesystem permission.
+    """
+    app_id = environment.get("FLATPAK_ID")
+    runtime_dir = environment.get("XDG_RUNTIME_DIR")
+    if not app_id or not runtime_dir or environment.get("TMPDIR"):
+        return None
+
+    # QLocalServer keeps the single-instance socket in the temporary
+    # directory. An instance started before this change still listens in the
+    # private /tmp: keep that location until it exits, so this launch finds
+    # it instead of starting a second instance on the same profile.
+    if path_exists(os.path.join(LEGACY_TEMP_DIR, server_name)):
+        return None
+
+    candidate = os.path.join(runtime_dir, "app", app_id)
+    return candidate if is_writable_dir(candidate) else None
 
 
 class SetupManager:
@@ -233,6 +273,17 @@ class SetupManager:
             STRICT_PROXY_WEBRTC_FLAG,
             ProxyManager.strict_isolation_active(),
         )
+
+    @staticmethod
+    def apply_flatpak_temp_dir(server_name: str) -> None:
+        """Choose a temporary directory the host can also read in Flatpak.
+
+        Call it before SingleApplication and Qt WebEngine exist: both resolve
+        the temporary directory when they first need it.
+        """
+        shared_temp_dir = flatpak_shared_temp_dir(server_name)
+        if shared_temp_dir:
+            environ["TMPDIR"] = shared_temp_dir
 
     @staticmethod
     def apply_qt_scale_factor_rounding_policy():
