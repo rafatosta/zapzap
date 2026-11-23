@@ -30,6 +30,10 @@ releases and the AppStream metadata.
 
 ### Fixed
 
+- Pre-configure `QGuiApplication.setDesktopFileName` before constructing
+  `SingleApplication` in `zapzap/app/application.py`. This ensures `xdg-desktop-portal`
+  associates the D-Bus connection with the application ID during initial platform
+  integration and avoids portal registration errors (`Could not register app ID: Connection already associated with an application ID`).
 - Prevent QtWebEngine `SIGABRT` (`Single mode supports only single profile.`)
   when Single Process mode (`performance/single_process` or `--single-process`)
   is active. Cap the effective account limit to 1 in Single Process mode,

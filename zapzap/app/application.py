@@ -5,7 +5,7 @@ import sys
 import zapzap
 from PyQt6.QtCore import QCoreApplication, QTimer
 from PyQt6.QtCore import QUrl
-from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtGui import QDesktopServices, QGuiApplication
 
 from zapzap.app.single_application import SingleApplication
 from zapzap.app.desktop_application_dbus import DesktopApplicationDBus
@@ -85,12 +85,16 @@ def main():
     # Instala o handler de crash
     crash_handler.install()
 
+    # Pre-configure the desktop file name statically before instantiating the
+    # application so that xdg-desktop-portal associates the D-Bus connection with
+    # the correct application ID during initial platform integration.
+    QGuiApplication.setDesktopFileName(zapzap.__desktopid__)
+
     # Define application attributes
     app = SingleApplication(
         zapzap.__appid__, sys.argv + SetupManager.get_argv())
     app.setApplicationName(zapzap.__appname__)
     app.setApplicationVersion(zapzap.__version__)
-    app.setDesktopFileName(zapzap.__desktopid__)
     app.setOrganizationDomain(zapzap.__domain__)
     crash_session_monitor = CrashSessionMonitor(
         faulthandler_path=crash_handler.faulthandler_path,
